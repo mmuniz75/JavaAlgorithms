@@ -1,11 +1,10 @@
 package hackerrank;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class BinarySearch  {
+public class BinarySearchTest {
 	
 	
 	 class Node {
@@ -112,15 +111,38 @@ public class BinarySearch  {
 		assertFalse("It is not binary search",checkBST(node4));
 	}
 	
-		
 	boolean checkBST(Node root) {
-        return checkBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+		boolean test = checkNodes(root);		
+		return test;
+	}
+	
+	
+	private boolean checkNodes(Node root){
+		if(root.left!=null){
+			if(root.left.data>root.data)
+				return false;
+			if(!checkNodes(root.left))
+				return false;
+		}
+		
+		if(root.right!=null){
+			if(root.right.data<root.data)
+				return false;
+			if(!checkNodes(root.right))
+				return false;
+		}
+		return true;
+	}
+
+	
+	boolean checkBST2(Node root) {
+        return checkBST2(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
-    boolean checkBST(Node node, int min, int max) {
+    boolean checkBST2(Node node, int min, int max) {
         if (node == null) return true;
         return  min < node.data && node.data < max && 
-            checkBST(node.left, min, node.data) && 
-            checkBST(node.right, node.data, max);
+            checkBST2(node.left, min, node.data) && 
+            checkBST2(node.right, node.data, max);
     }
 	
 		

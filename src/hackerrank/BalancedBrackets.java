@@ -1,12 +1,13 @@
 package hackerrank;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Stack;
 
 import org.junit.Test;
 
-import junit.framework.TestCase;
-
-public class BalancedBrackets extends TestCase {
+public class BalancedBrackets{
 	
 	
 	@Test
