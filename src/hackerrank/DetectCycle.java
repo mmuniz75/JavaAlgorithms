@@ -18,7 +18,7 @@ public class DetectCycle {
 
 	@Test
 	public void test() {
-		assertEquals(false,hasCycle(new Node(1,null)));
+		assertEquals(false,hasCycle2(new Node(1,null)));
 	}
 	
 	@Test
@@ -29,7 +29,7 @@ public class DetectCycle {
 		node3.next = node2;
 		Node node1 = new Node(1,node2);
 		
-		assertEquals(true,hasCycle(node1));
+		assertEquals(true,hasCycle2(node1));
 	}
 	
 	@Test
@@ -39,20 +39,50 @@ public class DetectCycle {
 		Node node2 = new Node(2,node3);
 		Node node1 = new Node(1,node2);
 		
-		assertEquals(false,hasCycle(node1));
+		assertEquals(false,hasCycle2(node1));
+	}
+	
+	@Test
+	public void test4() {
+		
+		Node node4 = new Node(4,null);
+		Node node3 = new Node(3,node4);
+		node4.next = node3;
+		Node node2 = new Node(2,node3);
+		Node node1 = new Node(1,node2);
+		
+		
+		assertEquals(true,hasCycle2(node1));
 	}
 	
 	
 	boolean hasCycle(Node head) {
 	    if (head == null) return false;
 	    
-	    Node slow = head;
-	    Node fast = head.next;
-	    while (slow != fast) {
-	        if (fast == null || fast.next == null) return false;
+	    Node current = head;
+	    Node next = head.next;
+	    while (current != next) {
+	        if (next == null || next.next == null) return false;
 	        
-	        slow = slow.next;
-	        fast = fast.next.next;
+	        current = next;
+	        next = next.next.next;
+	    }
+	    
+	    return true;
+	}
+	
+	
+	boolean hasCycle2(Node head) {
+	    if (head == null) return false;
+	    
+	    Node current = head;
+	    Node next = head.next;
+	    if (next == null) return false;
+	    while (next.data > current.data) {
+	        if (next == null || next.next == null) return false;
+	        
+	        current = next;
+	        next = next.next;
 	    }
 	    
 	    return true;
