@@ -1,7 +1,5 @@
 package hackerrank;
 
-import static org.junit.Assert.fail;
-
 import java.util.Arrays;
 
 import org.junit.Test;
